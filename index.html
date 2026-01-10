@@ -1,0 +1,1097 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Shasha Trade — Elite Trading Platform</title>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --muted: rgba(255, 255, 255, 0.7);
+            --glass: rgba(255, 255, 255, 0.06);
+            --accent: linear-gradient(135deg, #ffffff, #cccccc);
+            --pad-lg: 50px;
+            --pad-md: 30px;
+            --pad-sm: 18px;
+            --container: 1200px;
+            --header-height: 86px;
+        }
+
+        /* Reset & base */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: #fff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* Utilities */
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 20px
+        }
+
+        .flex {
+            display: flex
+        }
+
+        .center {
+            align-items: center;
+            justify-content: center
+        }
+
+        .visually-hidden {
+            position: absolute !important;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            clip: rect(1px, 1px, 1px, 1px);
+            white-space: nowrap
+        }
+
+        /* Background video + overlays */
+        .video-background {
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+            overflow: hidden
+        }
+
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7) contrast(1.12);
+            transition: filter .3s ease
+        }
+
+        .gradient-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(5, 5, 5, 0.88) 0%, rgba(10, 10, 10, 0.78) 50%, rgba(15, 15, 15, 0.72) 100%);
+            z-index: -2
+        }
+
+        .animated-gradient {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            opacity: .8;
+            background: linear-gradient(45deg, rgba(80, 80, 80, 0.03) 0%, rgba(50, 50, 50, 0.02) 25%, rgba(20, 20, 20, 0.03) 50%, rgba(60, 60, 60, 0.02) 75%, rgba(30, 30, 30, 0.03) 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 18s linear infinite
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%
+            }
+
+            50% {
+                background-position: 100% 50%
+            }
+
+            100% {
+                background-position: 0% 50%
+            }
+        }
+
+        /* Header */
+        header.site-header {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: 1000;
+            padding: 20px var(--pad-lg);
+            transition: all .35s cubic-bezier(.4, 0, .2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent
+        }
+
+        header.site-header .navbar {
+            width: 100%;
+            max-width: var(--container);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px
+        }
+
+        header.site-header.scrolled {
+            padding: 12px var(--pad-lg);
+            background: rgba(10, 10, 10, 0.86);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06)
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit
+        }
+
+        .logo-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #777, #555);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-family: Inter, sans-serif;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45)
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1
+        }
+
+        .logo-main {
+            font-family: "Playfair Display", serif;
+            font-weight: 800;
+            font-size: 18px;
+            background: var(--accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            margin-top: 2px
+        }
+
+        /* Nav (desktop) */
+        nav.desktop-nav {
+            display: flex;
+            align-items: center;
+            gap: 18px
+        }
+
+        ul.nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 8px;
+            margin: 0;
+            padding: 0;
+            align-items: start
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all .25s
+        }
+
+        .nav-link:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.04)
+        }
+
+        .nav-link.active {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45)
+        }
+
+        /* CTA button */
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 20px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #666, #444);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35)
+        }
+
+        .contact-btn:active {
+            transform: translateY(1px)
+        }
+
+        .contact-btn .fa-arrow-right {
+            font-size: 14px
+        }
+
+        /* Mobile toggle */
+        .mobile-toggle {
+            display: none;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #fff;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px
+        }
+
+        .mobile-toggle:focus {
+            outline: 2px solid rgba(255, 255, 255, 0.08)
+        }
+
+        /* Mobile nav panel */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .28s
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            height: 100vh;
+            width: 320px;
+            background: rgba(12, 12, 12, 0.98);
+            backdrop-filter: blur(16px);
+            z-index: 999;
+            padding: 120px 24px 40px;
+            transition: right .36s cubic-bezier(.4, 0, .2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            overflow-y: auto;
+            border-left: 1px solid rgba(255, 255, 255, 0.06)
+        }
+
+        .mobile-nav.active {
+            right: 0
+        }
+
+        .mobile-nav .nav-menu {
+            flex-direction: column
+        }
+
+        .mobile-nav .nav-link {
+            padding: 14px 10px;
+            border-radius: 8px
+        }
+
+        /* HERO layout */
+        main.hero {
+            min-height: 100vh;
+            padding: calc(var(--header-height) + 40px) var(--pad-lg) 80px;
+            display: grid;
+            align-items: center
+        }
+
+        .hero .inner {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 40px;
+            align-items: center;
+            max-width: var(--container);
+            margin: 0 auto;
+            width: 100%
+        }
+
+        @media (max-width:1200px) {
+            .hero .inner {
+                grid-template-columns: 1fr 360px
+            }
+        }
+
+        @media (max-width:992px) {
+            .hero .inner {
+                grid-template-columns: 1fr;
+                padding: 0 10px
+            }
+        }
+
+        /* hero content */
+        .hero-content {
+            padding: 20px 0;
+            z-index: 10
+        }
+
+        .headline {
+            font-family: "Playfair Display", serif;
+            font-weight: 800;
+            line-height: 1;
+            font-size: clamp(2.5rem, 6vw + 1rem, 4.8rem);
+            margin: 0 0 18px;
+            color: #fff;
+            letter-spacing: -1px
+        }
+
+        .lead {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            font-weight: 300;
+            margin: 18px 0 26px;
+            max-width: 60ch
+        }
+
+        .join-row {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        .join-btn {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 26px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .25s
+        }
+
+        .join-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45)
+        }
+
+        .join-btn .arrow {
+            transition: transform .25s
+        }
+
+        .join-btn:hover .arrow {
+            transform: translateX(6px)
+        }
+
+        /* Stats */
+        .stats-container {
+            display: flex;
+            gap: 32px;
+            margin-top: 28px
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: var(--accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.65);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 6px
+        }
+
+        /* Trading visualization */
+        .trading-visualization {
+            width: 100%;
+            height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            position: relative
+        }
+
+        .data-card {
+            width: 100%;
+            height: 100%;
+            max-width: 420px;
+            border-radius: 18px;
+            padding: 18px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(6px);
+            position: relative;
+            overflow: hidden;
+            pointer-events: auto
+        }
+
+        .chart-line {
+            position: absolute;
+            left: 10%;
+            right: 10%;
+            top: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            border-radius: 2px;
+            opacity: .9
+        }
+
+        .chart-dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 0 18px rgba(255, 255, 255, 0.7)
+        }
+
+        .market-indicators {
+            position: relative;
+            width: 100%;
+            height: 100%
+        }
+
+        .indicator {
+            position: absolute;
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 12px;
+            color: var(--muted);
+            backdrop-filter: blur(4px)
+        }
+
+        .indicator.up {
+            color: #a7f3b2
+        }
+
+        .indicator.down {
+            color: #ffb4b4
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 36px;
+            z-index: 10;
+            opacity: .8;
+            cursor: pointer
+        }
+
+        .mouse {
+            width: 34px;
+            height: 56px;
+            border-radius: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.18);
+            position: relative
+        }
+
+        .wheel {
+            width: 4px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            position: absolute;
+            left: 50%;
+            top: 12px;
+            transform: translateX(-50%);
+            border-radius: 3px;
+            animation: scroll 2s infinite
+        }
+
+        @keyframes scroll {
+            0% {
+                opacity: 1;
+                top: 12px
+            }
+
+            100% {
+                opacity: 0;
+                top: 30px
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width:992px) {
+            .mobile-toggle {
+                display: inline-flex
+            }
+
+            nav.desktop-nav {
+                display: none
+            }
+
+            .hero {
+                padding-top: calc(var(--header-height) + 26px)
+            }
+
+            .trading-visualization {
+                display: none
+            }
+
+            .stats-container {
+                flex-wrap: wrap;
+                gap: 18px
+            }
+
+            header.site-header {
+                padding-left: 18px;
+                padding-right: 18px
+            }
+
+            .logo-text {
+                display: none
+            }
+        }
+
+        @media (max-width:480px) {
+            .headline {
+                font-size: clamp(1.8rem, 6vw, 2.6rem)
+            }
+
+            .stat-value {
+                font-size: 1.6rem
+            }
+
+            .data-card {
+                height: 380px
+            }
+        }
+
+        /* ========= Reveal Animations (fade-ins) ========= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            will-change: opacity, transform;
+            transition: opacity .8s cubic-bezier(.2, .9, .2, 1), transform .8s cubic-bezier(.2, .9, .2, 1);
+        }
+
+        .reveal.fade-up {
+            transform: translateY(18px);
+        }
+
+        .reveal.fade-left {
+            transform: translateX(-18px);
+        }
+
+        .reveal.fade-right {
+            transform: translateX(18px);
+        }
+
+        .reveal.fade-scale {
+            transform: translateY(12px) scale(.98);
+        }
+
+        .reveal.is-revealed {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Faster versions */
+        .reveal.fast {
+            transition-duration: .55s;
+            transition-timing-function: cubic-bezier(.2, .8, .2, 1);
+        }
+
+        .reveal.slow {
+            transition-duration: 1.05s;
+        }
+
+        /* Staggering: add delays via data-delay attribute or auto by JS */
+        .stagger-parent>* {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+
+        .stagger-parent.is-revealed>* {
+            opacity: 1;
+            transform: none;
+            transition: opacity .7s ease, transform .7s cubic-bezier(.2, .9, .2, 1);
+        }
+
+        /* small helper to control appearance order on load */
+        .appear-delay-1 {
+            transition-delay: .12s
+        }
+
+        .appear-delay-2 {
+            transition-delay: .24s
+        }
+
+        .appear-delay-3 {
+            transition-delay: .36s
+        }
+
+        .appear-delay-4 {
+            transition-delay: .48s
+        }
+
+        .appear-delay-5 {
+            transition-delay: .6s
+        }
+
+        .appear-delay-6 {
+            transition-delay: .72s
+        }
+
+        /* subtle pulse on indicators when revealed */
+        .indicator.pulse {
+            animation: indicatorPulse 3.2s ease-in-out infinite;
+        }
+
+        @keyframes indicatorPulse {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-6px)
+            }
+        }
+
+        /* dot float keyframe (dynamic) - fallback */
+        @keyframes dotFloat {
+            0% {
+                transform: translate(-50%, -50%) translateY(0)
+            }
+
+            50% {
+                transform: translate(-50%, -50%) translateY(-18px)
+            }
+
+            100% {
+                transform: translate(-50%, -50%) translateY(0)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Video Background -->
+    <div class="video-background" aria-hidden="true">
+        <video autoplay muted loop playsinline id="heroVideo"
+            poster="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1600&q=60">
+            <source src="assets/img/videos/hero1.mp4" type="video/mp4">
+            <!-- Fallback handled via poster -->
+        </video>
+    </div>
+
+    <div class="gradient-overlay" aria-hidden="true"></div>
+    <div class="animated-gradient" aria-hidden="true"></div>
+
+    <!-- Header -->
+    <header class="site-header reveal fade-down" id="siteHeader" data-delay="0.05">
+        <div class="navbar container navbar">
+            <a class="logo reveal fade-left" href="#" aria-label="Shasha Trade home" data-delay="0.08">
+                <div class="logo-icon" aria-hidden="true">ST</div>
+                <div class="logo-text">
+                    <div class="logo-main">Shasha Trade</div>
+                    <div class="logo-sub">Elite Trading</div>
+                </div>
+            </a>
+
+            <nav class="desktop-nav reveal fade-right" aria-label="Primary" data-delay="0.12">
+                <ul class="nav-menu" role="menubar">
+                    <li role="none"><a role="menuitem" class="nav-link reveal appear-delay-1" href="#home"
+                            data-delay="0.14"><i class="fas fa-home" aria-hidden="true"></i><span>Home</span></a></li>
+                    <li role="none"><a role="menuitem" class="nav-link reveal appear-delay-2" href="#markets"
+                            data-delay="0.2"><i class="fas fa-chart-line"
+                                aria-hidden="true"></i><span>Markets</span></a></li>
+                    <li role="none"><a role="menuitem" class="nav-link reveal appear-delay-3" href="#academy"
+                            data-delay="0.26"><i class="fas fa-graduation-cap"
+                                aria-hidden="true"></i><span>Academy</span></a></li>
+                    <li role="none"><a role="menuitem" class="nav-link reveal appear-delay-4" href="#community"
+                            data-delay="0.32"><i class="fas fa-users" aria-hidden="true"></i><span>Community</span></a>
+                    </li>
+                    <li role="none"><button class="contact-btn reveal appear-delay-5" data-delay="0.38"
+                            onclick="location.href='#join'"><span>Get Started</span><i class="fas fa-arrow-right"
+                                aria-hidden="true"></i></button></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-toggle reveal fade-up" id="mobileToggle" aria-controls="mobileNav"
+                aria-expanded="false" aria-label="Open mobile menu" data-delay="0.44">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Nav + overlay -->
+    <div class="overlay" id="overlay" tabindex="-1" aria-hidden="true"></div>
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true" aria-label="Mobile primary">
+        <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
+            <div class="logo-icon">ST</div>
+            <div>
+                <div class="logo-main">Shasha Trade</div>
+                <div class="logo-sub">Elite Trading</div>
+            </div>
+        </div>
+
+        <ul class="nav-menu">
+            <li><a class="nav-link" href="#home"><i class="fas fa-home"></i><span>Home</span></a></li>
+            <li><a class="nav-link" href="#markets"><i class="fas fa-chart-line"></i><span>Markets</span></a></li>
+            <li><a class="nav-link" href="#academy"><i class="fas fa-graduation-cap"></i><span>Academy</span></a></li>
+            <li><a class="nav-link" href="#community"><i class="fas fa-users"></i><span>Community</span></a></li>
+            <li><a class="nav-link" href="#contact"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
+        </ul>
+
+        <div style="margin-top:auto">
+            <button class="contact-btn" style="width:100%" onclick="location.href='#join'"><span>Start Trading</span><i
+                    class="fas fa-arrow-right"></i></button>
+        </div>
+    </nav>
+
+    <!-- Main -->
+    <main class="hero" id="home" role="main">
+        <div class="inner container">
+            <section class="hero-content">
+                <h1 class="headline reveal fade-up fast staggers" id="heroTitle" data-delay="0.16">
+                    <span class="reveal fade-up" data-delay="0.18" style="display:inline-block">Elite
+                        Trading.</span><br>
+                    <span class="reveal fade-up" data-delay="0.26" style="display:inline-block">Institutional</span>
+                    <span class="reveal fade-up" data-delay="0.34" style="display:inline-block">Standards.</span>
+                </h1>
+
+                <p class="lead reveal fade-up" data-delay="0.44">
+                    We apply elite performance principles and institutional-grade discipline to develop the next
+                    generation of skilled traders. Join a community where excellence is the standard.
+                </p>
+
+                <div class="join-row stagger-parent reveal fade-up" data-delay="0.5">
+                    <a class="join-btn" id="join" href="#join"> <span class="join-text">JOIN NOW</span> <span
+                            class="arrow">→</span> </a>
+                    <button class="contact-btn" onclick="location.href='#learn'"><i class="fas fa-graduation-cap"
+                            aria-hidden="true"></i> Learn More</button>
+                </div>
+
+                <div class="stats-container stagger-parent reveal fade-up" data-delay="0.62" aria-hidden="false">
+                    <div class="stat-item">
+                        <div class="stat-value">15,000+</div>
+                        <div class="stat-label">Active Traders</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">94%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">24/7</div>
+                        <div class="stat-label">Market Access</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trading visualization / data card -->
+            <aside class="trading-visualization reveal fade-up slow" data-delay="0.72" aria-hidden="false">
+                <div class="data-card" role="region" aria-label="Market snapshot">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+                        <div style="font-weight:700">Market Snapshot</div>
+                        <div style="font-size:.9rem;color:rgba(255,255,255,0.6)">Live • <span id="timeNow"></span></div>
+                    </div>
+
+                    <div style="position:relative;height:calc(100% - 60px)">
+                        <div class="chart-line" aria-hidden="true"></div>
+                        <div id="dataChart" class="market-indicators"></div>
+                    </div>
+
+                    <div style="position:absolute;left:18px;bottom:14px;font-size:.9rem;color:rgba(255,255,255,0.6)">
+                        Powered by Shasha Trade • Institutional-grade UI
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator reveal fade-up" id="scrollIndicator" aria-hidden="false" title="Scroll down"
+        data-delay="0.92">
+        <div class="mouse">
+            <div class="wheel"></div>
+        </div>
+    </div>
+
+    <script>
+        // Elements
+        const header = document.getElementById('siteHeader');
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const overlay = document.getElementById('overlay');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const scrollIndicator = document.getElementById('scrollIndicator');
+        const video = document.getElementById('heroVideo');
+        const dataChart = document.getElementById('dataChart');
+        const timeNow = document.getElementById('timeNow');
+
+        // HEADER scroll behavior
+        const onScroll = () => {
+            const y = window.scrollY || window.pageYOffset;
+            if (y > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+
+            if (y > 100) {
+                scrollIndicator.style.opacity = '0';
+                scrollIndicator.style.visibility = 'hidden';
+            } else {
+                scrollIndicator.style.opacity = '0.9';
+                scrollIndicator.style.visibility = 'visible';
+            }
+
+            // subtle parallax for viz
+            const viz = document.querySelector('.trading-visualization');
+            if (viz) viz.style.transform = `translateY(${Math.max(-60, -y * 0.15)}px)`;
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        // Mobile menu toggle
+        function openMobile() {
+            mobileNav.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            mobileToggle.setAttribute('aria-expanded', 'true');
+            mobileNav.setAttribute('aria-hidden', 'false');
+            mobileToggle.querySelector('i').classList.remove('fa-bars');
+            mobileToggle.querySelector('i').classList.add('fa-times');
+        }
+        function closeMobile() {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+            mobileToggle.setAttribute('aria-expanded', 'false');
+            mobileNav.setAttribute('aria-hidden', 'true');
+            mobileToggle.querySelector('i').classList.remove('fa-times');
+            mobileToggle.querySelector('i').classList.add('fa-bars');
+        }
+        function toggleMobileMenu() {
+            if (mobileNav.classList.contains('active')) closeMobile(); else openMobile();
+        }
+        mobileToggle.addEventListener('click', toggleMobileMenu);
+        overlay.addEventListener('click', closeMobile);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileNav.classList.contains('active')) closeMobile(); });
+
+        // Close mobile when clicking nav links and update active state
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                if (mobileNav.classList.contains('active')) closeMobile();
+            });
+        });
+
+        // Scroll indicator click -> next section
+        if (scrollIndicator) {
+            scrollIndicator.addEventListener('click', () => {
+                window.scrollTo({ top: window.innerHeight - 60, behavior: 'smooth' });
+            });
+        }
+
+        // Video optimization & responsiveness
+        function optimizeVideoBrightness() {
+            if (!video) return;
+            const hour = new Date().getHours();
+            let brightness = 0.7;
+            if (hour < 7 || hour > 19) brightness = 0.82;
+            if (window.innerWidth < 768) brightness = 0.82;
+            video.style.filter = `brightness(${brightness}) contrast(1.12)`;
+            video.play().catch(() => {/* autoplay blocked; OK */ });
+        }
+        window.addEventListener('resize', optimizeVideoBrightness);
+        window.addEventListener('load', optimizeVideoBrightness);
+        optimizeVideoBrightness();
+
+        // Reveal system using IntersectionObserver
+        (function () {
+            const revealables = Array.from(document.querySelectorAll('.reveal, .stagger-parent, .staggers'));
+            if (!revealables.length) return;
+
+            const ioOptions = { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.08 };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const el = entry.target;
+                    if (entry.isIntersecting) {
+                        // apply delay if set in data-delay
+                        const delayAttr = parseFloat(el.getAttribute('data-delay'));
+                        const delay = (isNaN(delayAttr) ? 0 : delayAttr);
+                        // For stagger parents: reveal children with small incremental delays
+                        if (el.classList.contains('stagger-parent')) {
+                            el.classList.add('is-revealed');
+                            const children = Array.from(el.children);
+                            children.forEach((child, idx) => {
+                                const childDelay = (delay + idx * 0.08);
+                                child.style.transitionDelay = `${childDelay}s`;
+                                child.style.opacity = 1;
+                                child.style.transform = 'none';
+                            });
+                        } else if (el.classList.contains('staggers')) {
+                            // special case: multiple inner spans (headline)
+                            const inner = el.querySelectorAll('span');
+                            inner.forEach((s, idx) => {
+                                s.style.transition = 'opacity .7s ease, transform .7s cubic-bezier(.2,.9,.2,1)';
+                                s.style.transitionDelay = `${delay + idx * 0.12}s`;
+                                s.style.opacity = 1;
+                                s.style.transform = 'none';
+                            });
+                        } else {
+                            // simple reveal: use inline delay then add is-revealed class
+                            el.style.transitionDelay = `${delay}s`;
+                            el.classList.add('is-revealed');
+                        }
+
+                        // one-time reveal, unobserve afterwards
+                        observer.unobserve(el);
+                    }
+                });
+            }, ioOptions);
+
+            revealables.forEach(el => {
+                // set initial inline styles for safer animation control
+                if (el.classList.contains('stagger-parent')) {
+                    // leave children invisible (CSS default), observer will animate them
+                } else if (el.classList.contains('staggers')) {
+                    // headline children may already have reveal classes, ensure initial state
+                    const inner = el.querySelectorAll('span');
+                    inner.forEach(s => { s.style.opacity = 0; s.style.transform = 'translateY(18px)'; });
+                } else {
+                    // inline initial state consistent with CSS .reveal (helps when JS runs later)
+                    el.style.opacity = el.style.opacity || 0;
+                }
+                observer.observe(el);
+            });
+        })();
+
+        // Trading visualization: chart dots + indicators (with reveals)
+        function createTradingVisualization() {
+            if (!dataChart) return;
+            dataChart.innerHTML = '';
+
+            const dots = 8;
+            for (let i = 0; i < dots; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'chart-dot reveal fade-scale';
+                const left = 8 + i * (84 / (dots - 1));
+                const top = 28 + Math.random() * 44;
+                dot.style.left = `${left}%`;
+                dot.style.top = `${top}%`;
+                dot.style.transform = 'translate(-50%,-50%)';
+                dot.style.opacity = 0;
+                // stagger reveal via data-delay
+                const delay = 0.9 + i * 0.12 + Math.random() * 0.18;
+                dot.setAttribute('data-delay', delay.toFixed(2));
+                dot.style.transition = `opacity .8s ease ${delay}s, transform 1s cubic-bezier(.2,.9,.2,1) ${delay}s`;
+                // animated float applied after reveal
+                dot.style.animation = `dotFloat ${4 + Math.random() * 4}s ease-in-out ${delay}s infinite`;
+                dataChart.appendChild(dot);
+                // reveal via small timeout (in case IntersectionObserver doesn't target inner dynamically created items)
+                setTimeout(() => { dot.style.opacity = 1; dot.style.transform = 'translate(-50%,-50%)'; }, (delay + 0.08) * 1000);
+            }
+
+            const indicators = [
+                { text: "NASDAQ +1.8%", type: "up", left: 6, top: 14, delay: 0.8 },
+                { text: "Forex EUR/USD", type: "up", left: 28, top: 30, delay: 1.6 },
+                { text: "BTC $42,150", type: "up", left: 52, top: 22, delay: 2.4 },
+                { text: "S&P 500 +0.9%", type: "up", left: 74, top: 40, delay: 3.2 },
+                { text: "Gold +0.3%", type: "up", left: 20, top: 64, delay: 4.0 },
+                { text: "Oil -1.2%", type: "down", left: 88, top: 62, delay: 4.8 }
+            ];
+
+            indicators.forEach(ind => {
+                const el = document.createElement('div');
+                el.className = `indicator ${ind.type} reveal fade-up`;
+                el.textContent = ind.text;
+                el.style.left = `${ind.left}%`;
+                el.style.top = `${ind.top}%`;
+                el.style.opacity = 0;
+                el.style.transition = `opacity .7s ease ${ind.delay}s, transform .8s cubic-bezier(.2,.9,.2,1) ${ind.delay}s`;
+                // add subtle pulse after revealed
+                el.setAttribute('data-delay', ind.delay);
+                dataChart.appendChild(el);
+                setTimeout(() => { el.style.opacity = 1; el.classList.add('pulse'); }, (ind.delay + 0.06) * 1000);
+            });
+        }
+
+        // update time element
+        function updateTime() {
+            if (!timeNow) return;
+            const d = new Date();
+            timeNow.textContent = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+        updateTime();
+        setInterval(updateTime, 30_000);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createTradingVisualization();
+            updateTime();
+
+            // small fallback: if some reveal elements don't animate (e.g. due to observer), reveal them on load with delays
+            const fallbackElements = document.querySelectorAll('.reveal');
+            fallbackElements.forEach((el, idx) => {
+                const already = el.classList.contains('is-revealed');
+                if (!already) {
+                    const d = parseFloat(el.getAttribute('data-delay')) || (0.06 * idx);
+                    setTimeout(() => { el.classList.add('is-revealed'); el.style.opacity = 1; el.style.transform = 'none'; }, d * 1000);
+                }
+            });
+
+            // Apply stagger-parent automatic children reveal delays if JS didn't already show them
+            document.querySelectorAll('.stagger-parent').forEach(parent => {
+                if (!parent.classList.contains('is-revealed')) {
+                    const children = Array.from(parent.children);
+                    children.forEach((child, idx) => {
+                        const d = parseFloat(parent.getAttribute('data-delay')) || 0.6;
+                        child.style.transition = `opacity .7s ease ${d + idx * 0.08}s, transform .7s cubic-bezier(.2,.9,.2,1) ${d + idx * 0.08}s`;
+                        setTimeout(() => { child.style.opacity = 1; child.style.transform = 'none'; }, (d + idx * 0.08) * 1000);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
