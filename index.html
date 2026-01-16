@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Sasha Trade — Elite Trading Platform</title>
-
+    <title>Sasha Trade — Daily Fixed Earnings Investment Platform</title>
+    
     <!-- Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
@@ -604,7 +604,7 @@
         /* Hero Visual */
         .trading-card {
             width: 100%;
-            height: 650px;
+            height: auto;
             background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 24px;
@@ -1147,6 +1147,10 @@
             -webkit-text-fill-color: transparent;
             line-height: 1;
             margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .plan-period {
@@ -1633,7 +1637,7 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
-        .form-input {
+        .form-input, .form-textarea {
             width: 100%;
             padding: 15px 20px;
             background: rgba(255, 255, 255, 0.05);
@@ -1645,12 +1649,12 @@
             transition: all 0.3s ease;
         }
 
-        .form-input:hover {
+        .form-input:hover, .form-textarea:hover {
             background: rgba(255, 255, 255, 0.07);
             border-color: rgba(255, 255, 255, 0.2);
         }
 
-        .form-input:focus {
+        .form-input:focus, .form-textarea:focus {
             outline: none;
             border-color: var(--accent-gold-solid);
             background: rgba(255, 255, 255, 0.08);
@@ -1658,11 +1662,11 @@
             transform: translateY(-2px);
         }
 
-        .form-input::placeholder {
+        .form-input::placeholder, .form-textarea::placeholder {
             color: rgba(255, 255, 255, 0.4);
         }
 
-        textarea.form-input {
+        .form-textarea {
             min-height: 150px;
             resize: vertical;
         }
@@ -2005,6 +2009,60 @@
         
         .footer-container .separator {
             color: rgba(255,255,255,0.1);
+        }
+
+        /* NEW STYLES ADDED */
+        .daily-earnings {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(76, 175, 80, 0.15);
+            color: #4CAF50;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 15px;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .daily-earnings i {
+            font-size: 12px;
+        }
+
+        .roi-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05));
+            color: var(--accent-gold-solid);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            margin-left: 10px;
+        }
+
+        /* Form Status Messages */
+        .form-status {
+            padding: 12px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .form-status.success {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+            border: 1px solid rgba(76, 175, 80, 0.2);
+            display: block;
+        }
+
+        .form-status.error {
+            background: rgba(244, 67, 54, 0.1);
+            color: #F44336;
+            border: 1px solid rgba(244, 67, 54, 0.2);
+            display: block;
         }
 
         /* Responsive Design */
@@ -2399,7 +2457,7 @@
                 <div class="logo-icon" aria-hidden="true">ST</div>
                 <div class="logo-text">
                     <div class="logo-main">Sasha Trade</div>
-                    <div class="logo-sub">Elite Trading</div>
+                    <div class="logo-sub">Daily Fixed Returns</div>
                 </div>
             </a>
 
@@ -2407,13 +2465,13 @@
             <div class="desktop-nav">
                 <ul class="nav-menu" role="menubar">
                     <li role="none"><a role="menuitem" class="nav-link active" href="#home">Home</a></li>
-                    <li role="none"><a role="menuitem" class="nav-link" href="#expertise">Expertise</a></li>
-                    <li role="none"><a role="menuitem" class="nav-link" href="#plans">Plans</a></li>
+                    <li role="none"><a role="menuitem" class="nav-link" href="#expertise">How It Works</a></li>
+                    <li role="none"><a role="menuitem" class="nav-link" href="#plans">Investment Plans</a></li>
                     <li role="none"><a role="menuitem" class="nav-link" href="#faq">FAQ</a></li>
                     <li role="none"><a role="menuitem" class="nav-link" href="#contact">Contact</a></li>
                 </ul>
                 <button class="cta-button" onclick="location.href='#plans'">
-                    <span>Get Started</span>
+                    <span>Start Earning</span>
                     <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
@@ -2434,13 +2492,13 @@
     <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
         <ul class="nav-menu">
             <li><a class="nav-link active" href="#home"><i class="fas fa-home"></i>Home</a></li>
-            <li><a class="nav-link" href="#markets"><i class="fas fa-chart-line"></i>Expertise</a></li>
-            <li><a class="nav-link" href="#plans"><i class="fas fa-crown"></i>Plans</a></li>
-            <li><a class="nav-link" href="#academy"><i class="fas fa-graduation-cap"></i>FAQ</a></li>
+            <li><a class="nav-link" href="#expertise"><i class="fas fa-chart-line"></i>How It Works</a></li>
+            <li><a class="nav-link" href="#plans"><i class="fas fa-crown"></i>Investment Plans</a></li>
+            <li><a class="nav-link" href="#faq"><i class="fas fa-question-circle"></i>FAQ</a></li>
             <li><a class="nav-link" href="#contact"><i class="fas fa-envelope"></i>Contact</a></li>
         </ul>
         <button class="cta-button" onclick="location.href='#plans'">
-            <span>Start Trading</span>
+            <span>Start Earning Daily</span>
             <i class="fas fa-arrow-right"></i>
         </button>
     </nav>
@@ -2450,357 +2508,373 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="headline">
-                    <span>Elite Trading.</span><br>
-                    <span>Institutional</span>
-                    <span>Standards.</span>
+                    <span>Daily Fixed Earnings</span><br>
+                    <span>Guaranteed Returns</span>
+                    <span class="daily-earnings">
+                        <i class="fas fa-calendar-check"></i> Paid Daily
+                    </span>
                 </h1>
-                
+
                 <p class="lead">
-                    We apply elite performance principles and institutional-grade discipline to develop the next
-                    generation of skilled traders. Join a community where excellence is the standard.
+                    Invest with confidence in our proven trading platform. Earn fixed daily returns based on your
+                    chosen investment plan. Your earnings are calculated and paid daily, providing consistent passive
+                    income.
                 </p>
-                
+
                 <div class="hero-buttons">
                     <a href="#plans" class="primary-btn hover-lift">
-                        <span>JOIN NOW</span>
+                        <span>INVEST NOW</span>
                         <span class="arrow">→</span>
                     </a>
-                    <a href="#academy" class="secondary-btn hover-lift">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span>Learn More</span>
+                    <a href="#expertise" class="secondary-btn hover-lift">
+                        <i class="fas fa-chart-line"></i>
+                        <span>How It Works</span>
                     </a>
                 </div>
-                
+
                 <div class="stats">
                     <div class="stat-item hover-lift">
-                        <div class="stat-value">15,000+</div>
-                        <div class="stat-label">Active Traders</div>
+                        <div class="stat-value">2.8%</div>
+                        <div class="stat-label">Avg. Daily ROI</div>
                     </div>
                     <div class="stat-item hover-lift">
-                        <div class="stat-value">94%</div>
-                        <div class="stat-label">Success Rate</div>
+                        <div class="stat-value">99.7%</div>
+                        <div class="stat-label">Payment Rate</div>
                     </div>
                     <div class="stat-item hover-lift">
-                        <div class="stat-value">24/7</div>
-                        <div class="stat-label">Market Access</div>
+                        <div class="stat-value">24h</div>
+                        <div class="stat-label">Daily Payouts</div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="hero-visual">
                 <div class="trading-card hover-lift">
                     <div class="card-header">
-                        <div class="card-title">Market Snapshot</div>
-                        <div class="card-time" id="currentTime">Live • 14:30 EST</div>
+                        <div class="card-title">Daily Earnings Calculator</div>
+                        <div class="card-time" id="currentTime">Next Payout: 00:00 UTC</div>
                     </div>
-                    
-                    <div class="chart-container">
-                        <div class="chart-line"></div>
-                        <!-- Chart dots will be added by JavaScript -->
-                    </div>
-                    
+
+                  
+
                     <div class="market-indicators">
                         <div class="indicator hover-lift">
                             <div class="indicator-header">
-                                <div class="indicator-name">NASDAQ</div>
-                                <div class="indicator-value up">+1.8%</div>
+                                <div class="indicator-name">Basic Plan</div>
+                                <div class="indicator-value up">1.8% Daily</div>
                             </div>
-                            <div class="indicator-change">Today's change</div>
+                            <div class="indicator-change">Fixed Daily ROI</div>
                         </div>
-                        
+
                         <div class="indicator hover-lift">
                             <div class="indicator-header">
-                                <div class="indicator-name">EUR/USD</div>
-                                <div class="indicator-value up">+0.4%</div>
+                                <div class="indicator-name">Pro Plan</div>
+                                <div class="indicator-value up">2.5% Daily</div>
                             </div>
-                            <div class="indicator-change">Forex pair</div>
+                            <div class="indicator-change">Fixed Daily ROI</div>
                         </div>
-                        
+
                         <div class="indicator hover-lift">
                             <div class="indicator-header">
-                                <div class="indicator-name">BTC/USD</div>
-                                <div class="indicator-value up">$42,150</div>
+                                <div class="indicator-name">Elite Plan</div>
+                                <div class="indicator-value up">3.2% Daily</div>
                             </div>
-                            <div class="indicator-change">Cryptocurrency</div>
+                            <div class="indicator-change">Fixed Daily ROI</div>
                         </div>
-                        
+
                         <div class="indicator hover-lift">
                             <div class="indicator-header">
-                                <div class="indicator-name">S&P 500</div>
-                                <div class="indicator-value up">+0.9%</div>
+                                <div class="indicator-name">Total Paid</div>
+                                <div class="indicator-value up">$2.4M+</div>
                             </div>
-                            <div class="indicator-change">Index futures</div>
+                            <div class="indicator-change">To Investors</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-      
     </main>
 
-    <!-- Expertise Section -->
+    <!-- How It Works Section -->
     <section class="expertise-section" id="expertise">
         <div class="container">
             <div class="section-header">
-                <span class="section-subtitle">Professional Expertise</span>
-                <h2 class="section-title">Core Trading Principles</h2>
+                <span class="section-subtitle">How It Works</span>
+                <h2 class="section-title">Simple Investment Process</h2>
                 <p class="section-description">
-                    Our methodology combines technical precision with strategic insight to navigate
-                    complex financial markets and deliver consistent results.
+                    Our platform makes earning daily fixed returns simple and transparent. Here's how you can start
+                    earning passive income today.
                 </p>
             </div>
 
             <div class="cards-grid">
                 <article class="expertise-card hover-lift">
                     <div class="card-icon" aria-hidden="true">
-                        <i class="fas fa-solid fa-arrow-trend-up"></i>
+                        <i class="fas fa-wallet"></i>
                     </div>
-                    <h3 class="card-title">Market Dynamics</h3>
+                    <h3 class="card-title">Choose Your Plan</h3>
                     <p class="card-description">
-                        Leverage years of experience to navigate complex market landscapes.
+                        Select from our range of investment plans, each offering different daily ROI rates and
+                        investment amounts to match your goals.
                     </p>
                     <div class="card-features">
-                        <span><i class="fas fa-chart-line"></i> Real-time Analysis</span>
-                        <span><i class="fas fa-bullseye"></i> Precision Entry</span>
+                        <span><i class="fas fa-percentage"></i> Fixed Daily ROI</span>
+                        <span><i class="fas fa-dollar-sign"></i> Flexible Amounts</span>
                     </div>
                 </article>
 
                 <article class="expertise-card hover-lift">
                     <div class="card-icon" aria-hidden="true">
-                        <i class="fas fa-project-diagram"></i>
+                        <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3 class="card-title">Quantitative Edge</h3>
+                    <h3 class="card-title">Invest & Earn Daily</h3>
                     <p class="card-description">
-                        Turning market data into competitive trading edge.
+                        Your investment is placed in our expert trading pool. Earn fixed daily returns that are
+                        calculated and available for withdrawal every 24 hours.
                     </p>
                     <div class="card-features">
-                        <span><i class="fas fa-database"></i> Data Analytics</span>
-                        <span><i class="fas fa-robot"></i> AI Algorithms</span>
-                    </div>
-                </article>
-
-                <article class="expertise-card hover-lift">
-                    <div class="card-icon" aria-hidden="true">
-                        <i class="fa-solid fa-chess-knight fas"></i>
-                    </div>
-                    <h3 class="card-title">Risk Management</h3>
-                    <p class="card-description">
-                        Protecting and growing capital with disciplined strategies.
-                    </p>
-                    <div class="card-features">
+                        <span><i class="fas fa-calendar-day"></i> Daily Payouts</span>
                         <span><i class="fas fa-shield-alt"></i> Capital Protection</span>
-                        <span><i class="fas fa-balance-scale"></i> Risk Control</span>
+                    </div>
+                </article>
+
+                <article class="expertise-card hover-lift">
+                    <div class="card-icon" aria-hidden="true">
+                        <i class="fas fa-money-check-alt"></i>
+                    </div>
+                    <h3 class="card-title">Withdraw Profits</h3>
+                    <p class="card-description">
+                        Withdraw your daily earnings anytime. Choose to reinvest for compound growth or cash out to
+                        your preferred payment method.
+                    </p>
+                    <div class="card-features">
+                        <span><i class="fas fa-credit-card"></i> Instant Withdrawals</span>
+                        <span><i class="fas fa-sync-alt"></i> Auto-Reinvestment</span>
                     </div>
                 </article>
             </div>
         </div>
     </section>
 
-    <!-- Payment Plans Section -->
-    <section class="plans-section" id="plans">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">Investment Plans</span>
-                <h2 class="section-title">Choose Your Trading Tier</h2>
-                <p class="section-description">
-                    Select the plan that matches your trading ambitions. All plans include full platform access,
-                    24/7 support, and institutional-grade tools.
-                </p>
-            </div>
-            
-            <div class="plans-container">
-                <!-- Basic Plan -->
-                <div class="plan-card hover-lift hover-glow">
-                    <div class="plan-header">
-                        <h3 class="plan-name">Basic</h3>
-                        <div class="plan-price">$99</div>
-                        <div class="plan-period">per month</div>
-                    </div>
-                    
-                    <div class="plan-features">
-                        <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Up to $10,000 capital</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Basic trading tools</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Community access</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Weekly webinars</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Email support</span>
-                        </div>
-                    </div>
-                    
-                    <button class="plan-button hover-shine" onclick="selectPlan('Basic')">
-                        Start Basic Plan
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-                
-                <!-- Pro Plan (Featured) -->
-                <div class="plan-card featured hover-lift hover-glow">
-                    <div class="plan-header">
-                        <h3 class="plan-name">Professional</h3>
-                        <div class="plan-price">$299</div>
-                        <div class="plan-period">per month</div>
-                    </div>
-                    
-                    <div class="plan-features">
-                        <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Up to $50,000 capital</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Advanced trading tools</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Priority support</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Daily market analysis</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>1-on-1 mentorship</span>
-                        </div>
-                    </div>
-                    
-                    <button class="plan-button hover-shine" onclick="selectPlan('Professional')">
-                        Start Professional
-                        <i class="fas fa-crown"></i>
-                    </button>
-                </div>
-                
-                <!-- Elite Plan -->
-                <div class="plan-card hover-lift hover-glow">
-                    <div class="plan-header">
-                        <h3 class="plan-name">Elite</h3>
-                        <div class="plan-price">$599</div>
-                        <div class="plan-period">per month</div>
-                    </div>
-                    
-                    <div class="plan-features">
-                        <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Up to $250,000 capital</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Institutional tools</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>24/7 direct support</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Custom strategies</span>
-                        </div>
-                        <div class="plan-feature">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Private mentorship</span>
-                        </div>
-                    </div>
-                    
-                    <button class="plan-button hover-shine" onclick="selectPlan('Elite')">
-                        Start Elite Plan
-                        <i class="fas fa-rocket"></i>
-                    </button>
-                </div>
-            </div>
+    <!-- Investment Plans Section -->
+   <section class="plans-section" id="plans">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-subtitle">Investment Plans</span>
+            <h2 class="section-title">Choose Your Investment Plan</h2>
+            <p class="section-description">
+                Select a plan that fits your budget and earnings goals. All plans include daily earnings,
+                referral bonuses, and secure withdrawals.
+            </p>
         </div>
-    </section>
+
+        <div class="plans-container">
+
+            <!-- BRONZE PLAN -->
+            <div class="plan-card hover-lift hover-glow">
+                <div class="plan-header">
+                    <h3 class="plan-name">Bronze Plan</h3>
+                    <div class="plan-price">$50 – $100</div>
+                    <div class="plan-period">VIP 1 • 15 Months</div>
+                </div>
+
+                <div class="plan-features">
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Daily Earning: 0.34%</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Monthly Return: 10%</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Total Return: 150%</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Referral Levels: 6</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Minimum Withdrawal: $10</div>
+                </div>
+
+                <button class="plan-button hover-shine" onclick="selectPlan('Bronze')">
+                    Invest Now <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- SILVER PLAN -->
+            <div class="plan-card hover-lift hover-glow">
+                <div class="plan-header">
+                    <h3 class="plan-name">Silver Plan</h3>
+                    <div class="plan-price">$100</div>
+                    <div class="plan-period">VIP 2 • 14 Months</div>
+                </div>
+
+                <div class="plan-features">
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Daily Earning: $0.71</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Monthly Return: $21</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Total Return: $300</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Referral Levels: 6</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Minimum Withdrawal: $50</div>
+                </div>
+
+                <button class="plan-button hover-shine" onclick="selectPlan('Silver')">
+                    Invest Now <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- GOLD PLAN -->
+            <div class="plan-card featured hover-lift hover-glow">
+                <div class="plan-header">
+                    <h3 class="plan-name">Gold Plan</h3>
+                    <div class="plan-price">$250</div>
+                    <div class="plan-period">VIP 3 • 13.5 Months</div>
+                </div>
+
+                <div class="plan-features">
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Daily Earning: $1.92</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Monthly Return: $58</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Total Return: $750</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Referral Levels: 6</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Minimum Withdrawal: $100</div>
+                </div>
+
+                <button class="plan-button hover-shine" onclick="selectPlan('Gold')">
+                    Invest Now <i class="fas fa-crown"></i>
+                </button>
+            </div>
+
+            <!-- PLATINUM PLAN -->
+            <div class="plan-card hover-lift hover-glow">
+                <div class="plan-header">
+                    <h3 class="plan-name">Platinum Plan</h3>
+                    <div class="plan-price">$500</div>
+                    <div class="plan-period">VIP 5 • 12.5 Months</div>
+                </div>
+
+                <div class="plan-features">
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Daily Earning: $4.00</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Monthly Return: $120</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Total Return: $1,500</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Referral Levels: 7</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Minimum Withdrawal: $200</div>
+                </div>
+
+                <button class="plan-button hover-shine" onclick="selectPlan('Platinum')">
+                    Invest Now <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- DIAMOND PLAN -->
+            <div class="plan-card hover-lift hover-glow">
+                <div class="plan-header">
+                    <h3 class="plan-name">Diamond Plan</h3>
+                    <div class="plan-price">$1,000</div>
+                    <div class="plan-period">VIP 6 • 12 Months</div>
+                </div>
+
+                <div class="plan-features">
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Daily Earning: $8.33</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Monthly Return: $250</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Total Return: $3,000</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Referral Levels: 9</div>
+                    <div class="plan-feature"><i class="fas fa-check-circle"></i> Minimum Withdrawal: $250</div>
+                </div>
+
+                <button class="plan-button hover-shine" onclick="selectPlan('Diamond')">
+                    Invest Now <i class="fas fa-rocket"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 
     <!-- FAQ Section -->
     <section class="faq-section" id="faq">
         <div class="container">
-            <h2 class="faq-title">FAQ</h2>
+            <h2 class="faq-title">Frequently Asked Questions</h2>
             <div class="faq-wrap" role="region" aria-labelledby="faq-heading">
                 <!-- Accordion item 1 -->
                 <div class="faq-item">
                     <button class="faq-trigger" aria-expanded="false" aria-controls="faq1" id="faq1-trigger">
-                        <span class="faq-q">What is Elite Trading?</span>
+                        <span class="faq-q">What is Sasha Trade Investment Platform?</span>
                         <span class="faq-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="18" height="18">
-                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </span>
                     </button>
                     <div class="faq-panel" id="faq1" role="region" aria-labelledby="faq1-trigger">
-                        <p>Elite Trading is a premium proprietary trading platform that provides traders with capital to execute trades in various financial markets. We offer competitive profit splits, advanced trading tools, and educational resources to help traders succeed.</p>
+                        <p>Sasha Trade is a trading investment platform that provides daily fixed earnings based on your
+                            chosen investment plan. We pool investments from our clients and use expert trading
+                            strategies to generate consistent returns, which are distributed daily to our investors.</p>
                     </div>
                 </div>
 
                 <!-- Accordion item 2 -->
                 <div class="faq-item">
                     <button class="faq-trigger" aria-expanded="false" aria-controls="faq2" id="faq2-trigger">
-                        <span class="faq-q">Who should pursue Elite Trading status?</span>
+                        <span class="faq-q">How are daily earnings calculated and paid?</span>
                         <span class="faq-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="18" height="18">
-                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </span>
                     </button>
                     <div class="faq-panel" id="faq2" role="region" aria-labelledby="faq2-trigger">
-                        <p>Elite Trading is ideal for both experienced traders looking to scale their operations and beginners seeking a structured path to professional trading. Our platform offers multiple account sizes and challenge levels to accommodate various skill levels.</p>
+                        <p>Your daily earnings are calculated based on your investment amount and the fixed percentage
+                            of your chosen plan. For example, if you invest $1,000 in our Professional Plan (2.5% daily
+                            ROI), you'll earn $25 per day. Earnings are calculated every 24 hours and are available for
+                            withdrawal or reinvestment.</p>
                     </div>
                 </div>
 
                 <!-- Accordion item 3 -->
                 <div class="faq-item">
                     <button class="faq-trigger" aria-expanded="false" aria-controls="faq3" id="faq3-trigger">
-                        <span class="faq-q">What makes it different from other prop trading platforms?</span>
+                        <span class="faq-q">Can I withdraw my earnings daily?</span>
                         <span class="faq-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="18" height="18">
-                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </span>
                     </button>
                     <div class="faq-panel" id="faq3" role="region" aria-labelledby="faq3-trigger">
-                        <p>Unlike many competitors, we offer higher profit splits (up to 90%), no time limits on challenges, one-time evaluation fees with no recurring costs, and direct support from experienced trading mentors. Our platform also provides advanced analytics and risk management tools.</p>
+                        <p>Yes! One of the key features of our platform is daily withdrawals. You can withdraw your
+                            earnings every 24 hours. We process withdrawals within 2-4 hours during business hours, and
+                            our Elite Plan members enjoy instant withdrawal processing.</p>
                     </div>
                 </div>
 
                 <!-- Accordion item 4 -->
                 <div class="faq-item">
                     <button class="faq-trigger" aria-expanded="false" aria-controls="faq4" id="faq4-trigger">
-                        <span class="faq-q">How do I get funded?</span>
+                        <span class="faq-q">Is my investment capital safe?</span>
                         <span class="faq-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="18" height="18">
-                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </span>
                     </button>
                     <div class="faq-panel" id="faq4" role="region" aria-labelledby="faq4-trigger">
-                        <p>To get funded, you need to: 1) Choose an account size, 2) Pass our evaluation challenge by meeting specific profit targets while respecting risk parameters, 3) Once passed, you'll receive a funded account with real capital, and 4) Start trading and earn profit splits on successful trades.</p>
+                        <p>We employ sophisticated risk management strategies and maintain capital protection funds. Our
+                            trading is diversified across multiple markets and instruments to minimize risk. While all
+                            investments carry some risk, our platform has maintained a 99.7% payment rate since
+                            inception.</p>
                     </div>
                 </div>
 
                 <!-- Accordion item 5 -->
                 <div class="faq-item">
                     <button class="faq-trigger" aria-expanded="false" aria-controls="faq5" id="faq5-trigger">
-                        <span class="faq-q">Are there any hidden fees?</span>
+                        <span class="faq-q">What happens at the end of my investment period?</span>
                         <span class="faq-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="18" height="18">
-                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </span>
                     </button>
                     <div class="faq-panel" id="faq5" role="region" aria-labelledby="faq5-trigger">
-                        <p>No, we pride ourselves on transparency. The evaluation fee is a one-time payment with no recurring costs. There are no hidden fees, monthly subscriptions, or additional charges. The only deduction from your profits is the agreed-upon split percentage after you become a funded trader.</p>
+                        <p>At the end of your investment period (30, 60, or 90 days depending on your plan), you have
+                            several options: 1) Withdraw your initial investment plus any remaining earnings, 2)
+                            Continue earning with automatic renewal, or 3) Upgrade to a higher plan for better daily
+                            returns.</p>
                     </div>
                 </div>
             </div>
@@ -2813,30 +2887,30 @@
             <div class="contact-wrapper">
                 <!-- Contact Info -->
                 <div class="contact-info">
-                    <h1 class="contact-title">Get in Touch With Our Trading Experts</h1>
+                    <h1 class="contact-title">Get in Touch With Our Investment Experts</h1>
                     <p class="contact-description">
-                        Have questions about elite trading strategies or need assistance with our platform? 
-                        Our team of experts is here to help you succeed in the markets.
+                        Have questions about our investment plans or need assistance with your account? 
+                        Our team of experts is here to help you maximize your daily earnings.
                     </p>
                     
                     <div class="contact-details">
                         <div class="detail-item hover-lift">
                             <div class="detail-icon">
-                                <i class="fas fa-headset"></i>
+                                <i class="fas fa-calendar-day"></i>
                             </div>
                             <div class="detail-content">
-                                <h4>24/7 Support</h4>
-                                <p>Round-the-clock assistance for all your trading needs</p>
+                                <h4>Daily Payouts</h4>
+                                <p>Earnings calculated and paid every 24 hours</p>
                             </div>
                         </div>
                         
                         <div class="detail-item hover-lift">
                             <div class="detail-icon">
-                                <i class="fas fa-envelope"></i>
+                                <i class="fas fa-percentage"></i>
                             </div>
                             <div class="detail-content">
-                                <h4>Quick Response</h4>
-                                <p>We typically respond within 2 hours during business hours</p>
+                                <h4>Fixed Returns</h4>
+                                <p>Guaranteed daily ROI based on your plan</p>
                             </div>
                         </div>
                         
@@ -2845,8 +2919,8 @@
                                 <i class="fas fa-shield-alt"></i>
                             </div>
                             <div class="detail-content">
-                                <h4>Secure & Private</h4>
-                                <p>Your information is encrypted and protected</p>
+                                <h4>Secure Platform</h4>
+                                <p>Bank-level encryption and fund protection</p>
                             </div>
                         </div>
                     </div>
@@ -2877,7 +2951,7 @@
                             <!-- Message Field -->
                             <div class="form-group">
                                 <label for="message" class="form-label">Your Message *</label>
-                                <textarea id="message" name="message" class="form-input" placeholder="Tell us about your trading goals or questions..." required></textarea>
+                                <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your investment goals or questions..." required></textarea>
                             </div>
                             
                             <!-- Submit Button -->
@@ -2902,19 +2976,19 @@
                 <div class="footer-brand">
                     <div class="brand-mark">ST</div>
                     <div class="brand-text">
-                        <div class="brand-title">Sasha Trader</div>
-                        <div class="brand-sub">Elite AI Trading</div>
+                        <div class="brand-title">Sasha Trade</div>
+                        <div class="brand-sub">Daily Fixed Returns</div>
                     </div>
                 </div>
 
                 <!-- Navigation -->
                 <nav class="footer-nav" aria-label="Footer navigation">
-                    <div class="nav-col" role="navigation" aria-label="Company">
-                        <h4>Company</h4>
-                        <a href="#about">About Us</a>
-                        <a href="#services">Services</a>
+                    <div class="nav-col" role="navigation" aria-label="Investment">
+                        <h4>Investment</h4>
+                        <a href="#plans">Investment Plans</a>
+                        <a href="#expertise">How It Works</a>
                         <a href="#faq">FAQ</a>
-                        <a href="#careers">Careers</a>
+                        <a href="#returns">Daily Returns</a>
                     </div>
 
                     <div class="nav-col" role="navigation" aria-label="Legal">
@@ -2922,22 +2996,22 @@
                         <a href="#privacy">Privacy Policy</a>
                         <a href="#terms">Terms of Service</a>
                         <a href="#cookies">Cookie Policy</a>
-                        <a href="#disclaimer">Risk Disclaimer</a>
+                        <a href="#disclaimer">Risk Disclosure</a>
                     </div>
 
                     <div class="nav-col" role="navigation" aria-label="Support">
                         <h4>Support</h4>
                         <a href="#contact">Contact Us</a>
-                        <a href="#documentation">Documentation</a>
-                        <a href="#status">System Status</a>
-                        <a href="#community">Community</a>
+                        <a href="#withdrawals">Withdrawal Help</a>
+                        <a href="#status">Platform Status</a>
+                        <a href="#community">Investor Community</a>
                     </div>
                 </nav>
 
                 <!-- Newsletter & Social -->
                 <div class="footer-actions">
                     <div class="subscribe">
-                        <label for="email">Stay Updated</label>
+                        <label for="email">Get Daily Market Updates</label>
                         <form class="subscribe-form" id="subscribe-form" aria-label="Subscribe to newsletter">
                             <input 
                                 id="email" 
@@ -2972,27 +3046,27 @@
             <!-- Bottom Row -->
             <div class="bottom-row" role="note">
                 <div class="bottom-left">
-                    <span>&copy; <span id="footer-year">2024</span> Sasha AI Trading</span>
+                    <span>&copy; <span id="footer-year">2024</span> Sasha Trade Investment Platform</span>
                     <span class="separator" aria-hidden="true">•</span>
                     <a href="#privacy">Privacy Policy</a>
                     <span class="separator" aria-hidden="true">•</span>
                     <a href="#terms">Terms of Service</a>
                     <span class="separator" aria-hidden="true">•</span>
-                    <a href="#cookies">Cookie Policy</a>
+                    <a href="#disclaimer">Risk Disclosure</a>
                 </div>
                 <div class="bottom-right">
-                    <span class="muted">Made with precision · Elite Trading Platform</span>
+                    <span class="muted">Daily Fixed Returns Platform • 99.7% Payment Rate</span>
                     <span class="separator" aria-hidden="true">•</span>
-                    <a href="#contact" class="muted">Contact Support</a>
+                    <a href="#contact" class="muted">Investment Support</a>
                     <span class="separator" aria-hidden="true">•</span>
-                    <a href="#status" class="muted">System Status</a>
+                    <a href="#status" class="muted">Platform Status</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Enhanced JavaScript with smooth animations and interactions
+        // Enhanced JavaScript for Trading Investment Platform
         
         // Elements
         const header = document.getElementById('siteHeader');
@@ -3010,22 +3084,26 @@
             footerYear.textContent = new Date().getFullYear();
         }
         
-        // Update time function
+        // Update time function with next payout calculation
         function updateTime() {
             const now = new Date();
-            const timeString = now.toLocaleTimeString('en-US', {
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: true
-            });
+            
+            // Calculate next payout time (next UTC midnight)
+            const nextPayout = new Date();
+            nextPayout.setUTCHours(24, 0, 0, 0);
+            const timeUntilPayout = nextPayout - now;
+            
+            const hours = Math.floor(timeUntilPayout / (1000 * 60 * 60));
+            const minutes = Math.floor((timeUntilPayout % (1000 * 60 * 60)) / (1000 * 60));
+            
             if (currentTime) {
-                currentTime.textContent = `Live • ${timeString}`;
+                currentTime.textContent = `Next Payout: ${hours}h ${minutes}m`;
             }
         }
         
         // Initialize time
         updateTime();
-        setInterval(updateTime, 30000);
+        setInterval(updateTime, 60000); // Update every minute
         
         // Scroll function for header
         function handleScroll() {
@@ -3093,17 +3171,6 @@
             });
         });
         
-        // Smooth scroll function
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        }
-        
         // Add click handlers to CTA buttons
         ctaButtons.forEach(button => {
             button.addEventListener('click', function(e) {
@@ -3127,23 +3194,151 @@
         function selectPlan(planName) {
             const planButtons = document.querySelectorAll('.plan-button');
             planButtons.forEach(btn => {
-                btn.innerHTML = btn.innerHTML.replace('✓', '').replace('Selected', 'Start Plan');
+                btn.innerHTML = btn.innerHTML.replace('✓', '').replace('Selected', 'Invest');
             });
             
             const selectedButton = event.target.closest('.plan-button');
             if (selectedButton) {
-                selectedButton.innerHTML = selectedButton.innerHTML.replace('Start', '✓ Selected');
+                selectedButton.innerHTML = selectedButton.innerHTML.replace('Invest', '✓ Selected');
                 selectedButton.style.background = 'linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(76, 175, 80, 0.1))';
                 selectedButton.style.borderColor = 'rgba(76, 175, 80, 0.3)';
                 
-                // Show success message
-                showNotification(`Selected ${planName} Plan! Redirecting to checkout...`, 'success');
+                // Get ROI based on plan
+                let dailyROI = 0;
+                switch(planName) {
+                    case 'Basic': dailyROI = 1.8; break;
+                    case 'Professional': dailyROI = 2.5; break;
+                    case 'Elite': dailyROI = 3.2; break;
+                }
                 
-                // Simulate redirect
+                // Show success message
+                showNotification(`Selected ${planName} Plan (${dailyROI}% Daily ROI)!`, 'success');
+                
+                // Show ROI calculator modal
                 setTimeout(() => {
-                    window.location.href = '#checkout';
-                }, 1500);
+                    showROICalculator(planName, dailyROI);
+                }, 1000);
             }
+        }
+        
+        // Show ROI Calculator Modal
+        function showROICalculator(planName, dailyROI) {
+            // Remove existing calculator if present
+            const existingCalculator = document.querySelector('.roi-calculator-modal');
+            if (existingCalculator) existingCalculator.remove();
+            
+            const calculatorHTML = `
+                <div class="roi-calculator-modal" style="
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0,0,0,0.8);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                    backdrop-filter: blur(10px);
+                ">
+                    <div style="
+                        background: rgba(20,20,20,0.95);
+                        border: 1px solid rgba(255,255,255,0.1);
+                        border-radius: 20px;
+                        padding: 30px;
+                        width: 90%;
+                        max-width: 500px;
+                        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+                    ">
+                        <h3 style="color: #fff; margin-bottom: 20px;">${planName} Plan Calculator</h3>
+                        <p style="color: #4CAF50; margin-bottom: 20px;">Daily ROI: ${dailyROI}%</p>
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; color: #fff; margin-bottom: 8px;">Investment Amount ($):</label>
+                            <input type="number" id="investmentAmount" value="1000" min="99" max="50000" style="
+                                width: 100%;
+                                padding: 12px;
+                                background: rgba(255,255,255,0.05);
+                                border: 1px solid rgba(255,255,255,0.1);
+                                border-radius: 8px;
+                                color: #fff;
+                                font-size: 16px;
+                            ">
+                        </div>
+                        <div style="background: rgba(255,255,255,0.02); border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="color: #aaa;">Daily Earnings:</span>
+                                <span style="color: #4CAF50; font-weight: bold;" id="dailyEarnings">$${(1000 * dailyROI / 100).toFixed(2)}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="color: #aaa;">Weekly Earnings:</span>
+                                <span style="color: #4CAF50; font-weight: bold;" id="weeklyEarnings">$${(1000 * dailyROI / 100 * 7).toFixed(2)}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: #aaa;">Monthly Earnings:</span>
+                                <span style="color: #4CAF50; font-weight: bold;" id="monthlyEarnings">$${(1000 * dailyROI / 100 * 30).toFixed(2)}</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button onclick="proceedToInvestment('${planName}', ${dailyROI})" style="
+                                flex: 1;
+                                padding: 12px;
+                                background: linear-gradient(135deg, #666, #444);
+                                color: #fff;
+                                border: none;
+                                border-radius: 8px;
+                                cursor: pointer;
+                                font-weight: bold;
+                            ">Proceed to Investment</button>
+                            <button onclick="closeCalculator()" style="
+                                padding: 12px 24px;
+                                background: rgba(255,255,255,0.05);
+                                color: #fff;
+                                border: 1px solid rgba(255,255,255,0.1);
+                                border-radius: 8px;
+                                cursor: pointer;
+                            ">Close</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add calculator to page
+            const calculatorDiv = document.createElement('div');
+            calculatorDiv.innerHTML = calculatorHTML;
+            document.body.appendChild(calculatorDiv);
+            
+            // Add event listener for input changes
+            document.getElementById('investmentAmount').addEventListener('input', function(e) {
+                const amount = parseFloat(e.target.value) || 0;
+                document.getElementById('dailyEarnings').textContent = '$' + (amount * dailyROI / 100).toFixed(2);
+                document.getElementById('weeklyEarnings').textContent = '$' + (amount * dailyROI / 100 * 7).toFixed(2);
+                document.getElementById('monthlyEarnings').textContent = '$' + (amount * dailyROI / 100 * 30).toFixed(2);
+            });
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close calculator
+        function closeCalculator() {
+            const calculator = document.querySelector('.roi-calculator-modal');
+            if (calculator) calculator.remove();
+            document.body.style.overflow = '';
+        }
+        
+        // Proceed to investment
+        function proceedToInvestment(planName, dailyROI) {
+            const amountInput = document.getElementById('investmentAmount');
+            const amount = amountInput ? parseFloat(amountInput.value) : 1000;
+            
+            closeCalculator();
+            
+            showNotification(`Redirecting to ${planName} investment...`, 'success');
+            
+            // Simulate redirect (in real implementation, this would redirect to payment gateway)
+            setTimeout(() => {
+                showNotification(`Successfully invested $${amount} in ${planName} Plan!`, 'success');
+            }, 1500);
         }
         
         // FAQ Accordion functionality
@@ -3201,11 +3396,11 @@
             
             // Simulate API call
             setTimeout(() => {
-                // Reset form
-                form.reset();
-                
                 // Show success message
                 showFormStatus('Message sent successfully! We\'ll get back to you within 24 hours.', 'success');
+                
+                // Reset form
+                form.reset();
                 
                 // Reset button
                 submitBtn.innerHTML = '<span class="btn-text">Send Message</span><i class="fas fa-paper-plane"></i>';
@@ -3268,29 +3463,7 @@
             }, 3000);
         }
         
-        // Add animation keyframes for notification
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideInRight {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-            @keyframes fadeOut {
-                to {
-                    opacity: 0;
-                    transform: translateX(100%);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Create animated chart dots
+        // Create animated chart dots showing growth
         function createChartDots() {
             const chartContainer = document.querySelector('.chart-container');
             if (!chartContainer) return;
@@ -3298,32 +3471,33 @@
             // Clear existing dots
             chartContainer.querySelectorAll('.chart-dot').forEach(dot => dot.remove());
             
-            // Create 8 dots at random positions
-            for (let i = 0; i < 8; i++) {
+            // Create growing line pattern
+            for (let i = 0; i < 12; i++) {
                 const dot = document.createElement('div');
                 dot.className = 'chart-dot';
                 
-                // Random position (avoid edges)
-                const left = 10 + (i * (80 / 7));
-                const top = 30 + Math.random() * 40;
+                // Position dots in upward trend
+                const left = 5 + (i * (90 / 11));
+                const baseHeight = 30;
+                const growth = i * 3; // Simulating growth
+                const top = baseHeight + growth + (Math.random() * 5);
                 
                 dot.style.left = `${left}%`;
                 dot.style.top = `${top}%`;
                 
-                // Random animation delay
-                const delay = Math.random() * 2;
+                // Make dots appear sequentially
+                const delay = i * 0.2;
                 dot.style.animationDelay = `${delay}s`;
                 
-                // Add hover effect
-                dot.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.5)';
-                    this.style.boxShadow = '0 0 30px rgba(255, 255, 255, 1)';
-                });
+                // Size increases with position (simulating growth)
+                const size = 8 + (i * 0.5);
+                dot.style.width = `${size}px`;
+                dot.style.height = `${size}px`;
                 
-                dot.addEventListener('mouseleave', function() {
-                    this.style.transform = '';
-                    this.style.boxShadow = '';
-                });
+                // Color changes from green to gold (success)
+                const greenValue = 100 + (i * 10);
+                const goldValue = 150 + (i * 5);
+                dot.style.background = `radial-gradient(circle at 30% 30%, rgb(${greenValue}, 255, ${greenValue}), rgb(255, ${goldValue}, 0))`;
                 
                 chartContainer.appendChild(dot);
             }
@@ -3360,18 +3534,15 @@
             updateTime();
             handleScroll();
             
-            // Add hover sound effects (optional)
-            const hoverElements = document.querySelectorAll('.plan-card, .indicator, .cta-button, .expertise-card');
-            hoverElements.forEach(element => {
-                element.addEventListener('mouseenter', function() {
-                    this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-                });
-            });
-            
             // Add keyboard navigation
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
-                    toggleMobileMenu();
+                if (e.key === 'Escape') {
+                    // Close mobile menu if open
+                    if (mobileNav.classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
+                    // Close calculator if open
+                    closeCalculator();
                 }
             });
             
@@ -3416,7 +3587,7 @@
                         // Simulate API call
                         setTimeout(() => {
                             // Show success
-                            showNotification('Successfully subscribed to newsletter!', 'success');
+                            showNotification('Successfully subscribed to daily market updates!', 'success');
                             emailInput.value = '';
                             button.textContent = originalText;
                             button.disabled = false;
@@ -3426,7 +3597,61 @@
                     }
                 });
             }
+            
+            // Add daily earnings ticker
+            createDailyEarningsTicker();
         });
+        
+        // Create daily earnings ticker
+        function createDailyEarningsTicker() {
+            const tickerHTML = `
+                <div style="
+                    position: fixed;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: rgba(15,15,15,0.95);
+                    border-top: 1px solid rgba(255,255,255,0.1);
+                    padding: 10px 20px;
+                    z-index: 999;
+                    backdrop-filter: blur(10px);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    color: #fff;
+                    font-size: 14px;
+                ">
+                    <span>Today's Total Payouts:</span>
+                    <span style="color: #4CAF50; font-weight: bold;">$</span>
+                    <span style="color: #4CAF50; font-weight: bold;" id="tickerAmount">0</span>
+                    <span style="color: #aaa; font-size: 12px;">• Updated every minute</span>
+                </div>
+            `;
+            
+            const tickerDiv = document.createElement('div');
+            tickerDiv.innerHTML = tickerHTML;
+            document.body.appendChild(tickerDiv);
+            
+            // Animate ticker
+            let amount = 0;
+            const targetAmount = 124857; // Random large number
+            const tickerElement = document.getElementById('tickerAmount');
+            
+            const updateTicker = () => {
+                if (amount < targetAmount) {
+                    amount += Math.floor(Math.random() * 100) + 50;
+                    if (amount > targetAmount) amount = targetAmount;
+                    if (tickerElement) {
+                        tickerElement.textContent = amount.toLocaleString();
+                    }
+                }
+            };
+            
+            // Update every 2 seconds
+            setInterval(updateTicker, 2000);
+            updateTicker(); // Initial update
+        }
         
         // Resize handler
         window.addEventListener('resize', function() {
