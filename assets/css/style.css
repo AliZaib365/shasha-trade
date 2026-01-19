@@ -481,7 +481,7 @@
             animation: fadeUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.9s forwards;
         }
 
-        .primary-btn {
+        .primary-btn1 {
             display: inline-flex;
             align-items: center;
             gap: 12px;
@@ -498,7 +498,7 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
-        .primary-btn::before {
+        .primary-btn1::before {
             content: '';
             position: absolute;
             top: 0;
@@ -509,21 +509,21 @@
             transition: left 0.6s ease;
         }
 
-        .primary-btn:hover {
+        .primary-btn1:hover {
             transform: translateY(-4px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             background: linear-gradient(135deg, #777, #555);
         }
 
-        .primary-btn:hover::before {
+        .primary-btn1:hover::before {
             left: 100%;
         }
 
-        .primary-btn:hover .arrow {
+        .primary-btn1:hover .arrow {
             transform: translateX(8px);
         }
 
-        .primary-btn .arrow {
+        .primary-btn1 .arrow {
             transition: transform 0.3s ease;
         }
 
